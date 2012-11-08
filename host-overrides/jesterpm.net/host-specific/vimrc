@@ -1,0 +1,23 @@
+set tags+=~/development/lib/*/tags
+set tags+=../tags
+
+function! InsertJavaPackage()
+  let filename = expand("%")
+  let filename = substitute(filename, "\.java$", "", "")
+  let dir = getcwd() . "/" . filename
+  let dir = substitute(dir, "^.*\/src\/", "", "")
+  let dir = substitute(dir, "\/[^\/]*$", "", "")
+  let dir = substitute(dir, "\/", ".", "g")
+  let filename = substitute(filename, "^.*\/", "", "")
+  let dir = "package " . dir . ";"
+  let result = append(0, "\/*")
+  let result = append(1, " * Copyright " . strftime("%Y") ." Jesse Morgan")
+  let result = append(2, " */")
+  let result = append(4, [dir, "", "\/**", " * ", " * @author Jesse Morgan <jesse@jesterpm.net>", " */", "class " . filename . " {", "     ", "}"])
+  exe "normal 12G"
+endfunction
+
+autocmd BufNewFile *.java call InsertJavaPackage()
+autocmd filetype java setlocal makeprg=ant
+autocmd filetype java setlocal efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+

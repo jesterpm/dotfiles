@@ -1,0 +1,14 @@
+# Mutt settings specific to my computers.
+
+set from="Jesse Morgan <jesse@jesterpm.net>"
+set crypt_autosign
+set sendmail="msmtp"
+
+set postponed="+postponed"
+set record="+sent-`date +%Y`"
+
+mailboxes =INBOX =archived =dc206 =probably-spam
+
+subscribe list@dc206.org
+subscribe bugtraq@securityfocus.com
+

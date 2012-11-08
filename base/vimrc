@@ -1,0 +1,114 @@
+" Setting editor defaults
+set nu
+syntax on
+set bg=dark
+set diffopt=filler,iwhite " keep files synced and ignore whitespace
+set expandtab             " Get rid of tabs altogether and replace with spaces
+"set guioptions-=m         " Remove menu from the gui
+"set guioptions-=T         " Remove toolbar
+set hidden                " hide buffers instead of closing
+set history=50            " keep 50 lines of command line history
+set ignorecase            " Do case insensitive matching
+set smartcase             " Ignore case only when doing a lowercase search
+set incsearch             " Incremental search
+set laststatus=2          " always have status bar
+set linebreak             " This displays long lines as wrapped at word boundries
+set matchtime=10          " Time to flash the brack with showmatch
+set nobackup              " Don't keep a backup file
+set nocompatible          " Use Vim defaults (much better!)
+set hlsearch              " Use highlighted search (I am blind)
+set t_Co=256              " Set terminal to use 256 colors
+set backspace=indent,eol,start
+set clipboard=unnamed     " Use system clipboard for all cut/copy operations
+set ruler
+set foldmethod=indent
+set nofen
+set mouse=a
+set spell spelllang=en
+
+" filetypes
+filetype plugin on
+filetype indent on
+filetype on
+
+"Set colorscheme.  This is a black background colorscheme
+  colorscheme default
+
+" Turn off highlighting after search
+map ,, :nohl<CR>
+
+" Remove all trailing whitespaces
+map <Leader>s :%s/\s\+$//g <cr>
+
+" toggle line number with F11 or Ctrl-L
+map <F11> : set number! <cr>
+map <C-L> : set number! <cr>
+
+" Move between split windows
+map O5B <C-W>j
+map O5A <C-W>k
+map O5D <C-W>h
+map O5C <C-W>l
+
+"Set tab to 4 spaces
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set smarttab
+
+" Paste from GUI into vim and not lose indendation
+" F7 to toggle paste mode
+map <F7> :set invpaste<CR>
+set pastetoggle=<F7>
+
+"normal mode maps
+
+"Map \e to edit a file from the directory of the current buffer
+if has("unix")
+  nmap <Leader>e :e <C-R>=expand("%:p:h") . "/"<CR>
+else
+  nmap <Leader>,e :e <C-R>=expand("%:p:h") . "\\"<CR>
+endif
+
+cabbr <expr> %% expand('%:p:h')
+
+"When editing a file, make screen display the name of the file you are editing
+function! SetTitle()
+  if $TERM =~ "^screen"
+    let l:title = 'vi: ' . expand('%:t')        
+    
+    if (l:title != 'vi: __Tag_List__')
+      let l:truncTitle = strpart(l:title, 0, 15)
+      silent exe '!echo -e -n "\033k' . l:truncTitle . '\033\\"'     
+    endif
+  endif
+endfunction
+
+" Run it every time we change buffers
+autocmd BufEnter,BufFilePost * call SetTitle()
+
+perl <<EOT
+  # Get the user name, should probably get the home dir...
+  my $home_dir = (getpwuid($<))[7];
+
+  if ( -e $home_dir ) {
+    my $temp_location = "$home_dir/.vim-tmp";
+    my $tmp_dir = $temp_location . '/vXXX';
+    my $swp_dir = $temp_location . '/swps';
+
+    # If the location doesn't exist, create it
+    mkdir $temp_location unless ( -e $temp_location );
+
+    mkdir $tmp_dir unless ( -e $tmp_dir );
+    mkdir $swp_dir unless ( -e $swp_dir );
+
+    # Set TMPDIR and directory to the new location
+    VIM::DoCommand("let \$TMPDIR = '" . $tmp_dir . "'") if ( -w $tmp_dir );
+    VIM::DoCommand("set directory=" . $swp_dir) if ( -w $swp_dir );
+  }
+EOT
+
+" Load host-specific settings
+set runtimepath^=~/.host-specific/vim,
+set runtimepath+=~/.host-specific/vim/after
+source ~/.host-specific/vimrc

@@ -1,0 +1,42 @@
+#
+# Mutt settings common everywhere
+#
+
+# Mailbox Settings
+set mbox_type="Maildir"
+set folder="~/.maildir"
+
+# Mutt settings
+set header_cache=~/.maildir/mutt_cache/
+set delete=yes
+unset confirmappend
+set sort=threads
+set pager_stop=yes
+
+# Headers
+ignore *
+unignore date from: to: cc subject X-Spam-Status
+set forward_format="Fwd: %s"
+
+# Macros
+macro pager <Up> "<previous-line>" "Previous line"
+macro pager <Down> "<next-line>" "Next line"
+
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index e "<save-message>+archived<enter>" "Archive a message."
+macro pager e "<save-message>+archived<enter>" "Archive a message."
+macro index S "<save-message>+spam<enter>" "Report message as spam."
+macro index d "<save-message>+trash<enter>" "Move to trash"
+macro pager d "<save-message>+trash<enter>" "Move to trash"
+
+macro index \es <change-folder>'=search'<enter><shell-escape>'mairix ' 'Enter Mairix search term'
+
+# Colors
+color index brightwhite default ~N 
+color index brightwhite default ~O
+
+# Grab any host-specific settings
+source ~/.host-specific/muttrc
