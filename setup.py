@@ -15,6 +15,7 @@ Usage: python setup.py [--nice] [--home=DIRECTORY]
 """
 
 import os, sys, getopt, socket
+import shutil
 import string
 
 class Usage(Exception):
@@ -22,7 +23,7 @@ class Usage(Exception):
         self.msg = msg
 
 """ Create links to dotfiles """
-def makeDots(home, nice):
+def makeDots(home, nice = False, pretend = False):
     # First make a map of dot files to files in the repository.
     dotfiles = getMap("base/")
     
@@ -30,8 +31,63 @@ def makeDots(home, nice):
     hostname = socket.getfqdn().split(".")
     for i in range(len(hostname)):
         name = string.join(hostname[-(i+1):], ".")
-        dotfiles = getMap("host-overrides/" + name, dotfiles)
+        dotfiles = dotfiles + getMap("host-overrides/" + name)
 
+    if pretend:
+        print "I would make these links:"
+    else:
+        print "I am making these links:"
+
+    for dst, src in dotfiles:
+        realDest = home + "/." + dst
+        success = True
+        if not pretend:
+            success = makeLink(src, realDest, nice)
+
+        if success:
+            print "%s => %s" % (realDest, dst, src)
+        else:
+            print "Not linking %s to %s because file exists" % (realDest, src)
+
+""" Return a map of dest => source dotfiles """
+def getMap(baseDirectory, directory=""):
+    if baseDirectory[-1] != "/":
+        baseDirectory = baseDirectory + "/"
+
+    if directory != "" and directory[-1] != "/":
+        directory = directory + "/"
+
+    dots = dict()
+    for filename in os.listdir(baseDirectory + directory):
+        if filename == ".nolink":
+            continue
+
+        fullPath = baseDirectory + directory + filename
+        
+        if os.path.isdir(fullPath) and os.path.exists(fullPath + "/.nolink"):
+            # We will not make a link but will make sure this directory exists.
+            dots[directory + filename] = ""
+            dots += getMap(baseDirectory, directory + filename)
+        
+        else:
+            dots[directory + filename] = fullPath
+
+""" Make a link from src to realDest.
+    If nice is true, don't overwrite realDest.
+    If src is an empty string, just create a directory. """
+def makeLink(src, realDest, nice = False):
+    if os.path.exists(realDest):
+        if nice:
+            return False
+        else:
+            shutil.rmtree(realDest)
+    
+    if src == "":
+        os.mkdir(realDest)
+
+    os.symlink(src, realDest)
+
+    return True
 
 
 """ Main Method """
