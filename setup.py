@@ -50,20 +50,23 @@ def makeLinks(dotfiles, prefix, nice, pretend):
         realDest = prefix + dst
 
         if type(src) is dict:
-            if not pretend:
-                os.mkdir(realDest)
-            print "%50s => <NEW DIRECTORY>" % (realDest)
-            makeLinks(src, realDest + "/", nice, pretend)
+            try:
+                if not pretend and not os.path.isdir(realDest): 
+                    os.mkdir(realDest)
+                print "%50s => <NEW DIRECTORY>" % (realDest)
+                makeLinks(src, realDest + "/", nice, pretend)
+            except OSError,e:
+                print "Could not mkdir %s. Will not link subitems: %s" % (realDest, str(e))
 
         else:
-            success = True
-            if not pretend:
-                success = makeLink(src, realDest, nice)
+            try:
+                if not pretend:
+                    success = makeLink(src, realDest, nice)
 
-            if success:
                 print "%50s => %s" % (realDest, src)
-            else:
-                print "Not linking %s to %s because file exists" % (realDest, src)
+
+            except IOError,e
+                print "Not linking %s to %s because IOError: %s" % (realDest, src, str(e))
 
 """ Return a map of dest => source dotfiles """
 def getMap(baseDirectory, directory=""):
