@@ -51,8 +51,11 @@ def makeLinks(dotfiles, prefix, nice, pretend):
 
         if type(src) is dict:
             try:
-                if not pretend and not os.path.isdir(realDest): 
-                    os.mkdir(realDest)
+                if not pretend:
+                    if os.path.islink(realDest):
+                        os.unlink(realDest) # Only remove symlinks. Don't try to replace a file with a directory.
+                    if not os.path.isdir(realDest): 
+                        os.mkdir(realDest)
                 print "%50s => <NEW DIRECTORY>" % (realDest)
                 makeLinks(src, realDest + "/", nice, pretend)
             except OSError,e:
@@ -65,7 +68,7 @@ def makeLinks(dotfiles, prefix, nice, pretend):
 
                 print "%50s => %s" % (realDest, src)
 
-            except IOError,e
+            except IOError,e:
                 print "Not linking %s to %s because IOError: %s" % (realDest, src, str(e))
 
 """ Return a map of dest => source dotfiles """
@@ -99,8 +102,10 @@ def makeLink(src, realDest, nice = False):
     if os.path.lexists(realDest):
         if nice:
             return False
-        else:
+        if os.path.isdir(realDest) and not os.path.islink(realDest):
             shutil.rmtree(realDest)
+        else:
+            os.unlink(realDest)
     
     os.symlink(src, realDest)
 
