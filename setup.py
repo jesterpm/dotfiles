@@ -9,8 +9,9 @@ create a better world.
 
 Usage: python setup.py [--nice] [--home=DIRECTORY]
 
-  --nice               Don't trample existing dot files
-  --home=DIRECTORY     Place links in DIRECTORY instead of $HOME
+  --nice               Don't trample existing dot files.
+  --home=DIRECTORY     Place links in DIRECTORY instead of $HOME.
+  --pretend            Don't change anything, just say what would be done.
 
 """
 
