@@ -23,31 +23,47 @@ class Usage(Exception):
         self.msg = msg
 
 """ Create links to dotfiles """
-def makeDots(home, nice = False, pretend = False):
+def makeDots(base, home, nice = False, pretend = False):
     # First make a map of dot files to files in the repository.
-    dotfiles = getMap("base/")
+    dotfiles = getMap(base + "/base/")
     
     # Get host specific overrides
     hostname = socket.getfqdn().split(".")
     for i in range(len(hostname)):
         name = string.join(hostname[-(i+1):], ".")
-        dotfiles = dotfiles + getMap("host-overrides/" + name)
+        directory = base + "/host-overrides/" + name
+        if os.path.isdir(directory):
+            mergeDicts(dotfiles, getMap(directory))
 
     if pretend:
         print "I would make these links:"
     else:
         print "I am making these links:"
 
-    for dst, src in dotfiles:
-        realDest = home + "/." + dst
-        success = True
-        if not pretend:
-            success = makeLink(src, realDest, nice)
+    makeLinks(dotfiles, home + "/.", nice, pretend)
 
-        if success:
-            print "%s => %s" % (realDest, dst, src)
+def makeLinks(dotfiles, prefix, nice, pretend):
+    keys = dotfiles.keys()
+    keys.sort()
+    for dst in keys:
+        src = dotfiles[dst]
+        realDest = prefix + dst
+
+        if type(src) is dict:
+            if not pretend:
+                os.mkdir(realDest)
+            print "%50s => <NEW DIRECTORY>" % (realDest)
+            makeLinks(src, realDest + "/", nice, pretend)
+
         else:
-            print "Not linking %s to %s because file exists" % (realDest, src)
+            success = True
+            if not pretend:
+                success = makeLink(src, realDest, nice)
+
+            if success:
+                print "%50s => %s" % (realDest, src)
+            else:
+                print "Not linking %s to %s because file exists" % (realDest, src)
 
 """ Return a map of dest => source dotfiles """
 def getMap(baseDirectory, directory=""):
@@ -66,29 +82,34 @@ def getMap(baseDirectory, directory=""):
         
         if os.path.isdir(fullPath) and os.path.exists(fullPath + "/.nolink"):
             # We will not make a link but will make sure this directory exists.
-            dots[directory + filename] = ""
-            dots += getMap(baseDirectory, directory + filename)
+            dots[directory + filename] = getMap(baseDirectory + directory + filename)
         
         else:
             dots[directory + filename] = fullPath
+
+    return dots
 
 """ Make a link from src to realDest.
     If nice is true, don't overwrite realDest.
     If src is an empty string, just create a directory. """
 def makeLink(src, realDest, nice = False):
-    if os.path.exists(realDest):
+    if os.path.lexists(realDest):
         if nice:
             return False
         else:
             shutil.rmtree(realDest)
     
-    if src == "":
-        os.mkdir(realDest)
-
     os.symlink(src, realDest)
 
     return True
 
+""" Recursively merge the second dictionary into the first. The latter takes precedence."""
+def mergeDicts(a, b):
+    for key, value in b.items():
+        if key in a and type(value) is dict and type(a[key]) is dict:
+            mergeDicts(a[key], value)
+        else:
+            a[key] = value
 
 """ Main Method """
 def main(argv=None):
@@ -97,12 +118,13 @@ def main(argv=None):
     try:
         try:
             opts, args = getopt.getopt(argv[1:], 
-                "hnd", ["help", "nice", "home"])
+                    "hnd:p", ["help", "nice", "home=", "pretend"])
         except getopt.error, msg:
              raise Usage(msg)
 
         # Settings:
         nice = False
+        pretend = False
         home = os.environ["HOME"]
 
         for o, a in opts:
@@ -113,10 +135,13 @@ def main(argv=None):
             if o in ("-n", "--nice"):
                 nice = True
 
-            else if o in ("-d", "--home"):
+            elif o in ("-p", "--pretend"):
+                pretend = True
+
+            elif o in ("-d", "--home"):
                 home = a
 
-        makeDots(home, nice)
+        makeDots(os.getcwd(), home, nice, pretend)
 
     except Usage, err:
         print >>sys.stderr, err.msg
