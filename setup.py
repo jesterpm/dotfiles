@@ -22,7 +22,7 @@ class Usage(Exception):
         self.msg = msg
 
 """ Create links to dotfiles """
-def makeDots(home, nice):
+def makeDots(home, nice = False, pretend = False):
     # First make a map of dot files to files in the repository.
     dotfiles = getMap("base/")
     
@@ -30,7 +30,26 @@ def makeDots(home, nice):
     hostname = socket.getfqdn().split(".")
     for i in range(len(hostname)):
         name = string.join(hostname[-(i+1):], ".")
-        dotfiles = getMap("host-overrides/" + name, dotfiles)
+        dotfiles = dotfiles + getMap("host-overrides/" + name)
+
+    if pretend:
+        print "I would make these links:"
+    else:
+        print "I am making these links:"
+
+    for dst, src in dotfiles:
+        realDest = home + "/" + dst
+        if not pretend:
+            makeLink(src, realDest, nice)
+
+        print "%s/.%s => %s" % (home, dst, src)
+
+def getMap(directory):
+    dots = dict()
+    for filename in LISTOFFILES:
+        if FILEXISTS: # directory + "/" + filename + "/.nolink"
+            dots += getChildMap(directory, filename)
+        dots["." + filename] = directory + "/" + filename
 
 
 
