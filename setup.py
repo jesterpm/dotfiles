@@ -15,6 +15,7 @@ Usage: python setup.py [--nice] [--home=DIRECTORY]
 """
 
 import os, sys, getopt, socket
+import shutil
 import string
 
 class Usage(Exception):
@@ -38,19 +39,55 @@ def makeDots(home, nice = False, pretend = False):
         print "I am making these links:"
 
     for dst, src in dotfiles:
-        realDest = home + "/" + dst
+        realDest = home + "/." + dst
+        success = True
         if not pretend:
-            makeLink(src, realDest, nice)
+            success = makeLink(src, realDest, nice)
 
-        print "%s/.%s => %s" % (home, dst, src)
+        if success:
+            print "%s => %s" % (realDest, dst, src)
+        else:
+            print "Not linking %s to %s because file exists" % (realDest, src)
 
-def getMap(directory):
+""" Return a map of dest => source dotfiles """
+def getMap(baseDirectory, directory=""):
+    if baseDirectory[-1] != "/":
+        baseDirectory = baseDirectory + "/"
+
+    if directory != "" and directory[-1] != "/":
+        directory = directory + "/"
+
     dots = dict()
-    for filename in LISTOFFILES:
-        if FILEXISTS: # directory + "/" + filename + "/.nolink"
-            dots += getChildMap(directory, filename)
-        dots["." + filename] = directory + "/" + filename
+    for filename in os.listdir(baseDirectory + directory):
+        if filename == ".nolink":
+            continue
 
+        fullPath = baseDirectory + directory + filename
+        
+        if os.path.isdir(fullPath) and os.path.exists(fullPath + "/.nolink"):
+            # We will not make a link but will make sure this directory exists.
+            dots[directory + filename] = ""
+            dots += getMap(baseDirectory, directory + filename)
+        
+        else:
+            dots[directory + filename] = fullPath
+
+""" Make a link from src to realDest.
+    If nice is true, don't overwrite realDest.
+    If src is an empty string, just create a directory. """
+def makeLink(src, realDest, nice = False):
+    if os.path.exists(realDest):
+        if nice:
+            return False
+        else:
+            shutil.rmtree(realDest)
+    
+    if src == "":
+        os.mkdir(realDest)
+
+    os.symlink(src, realDest)
+
+    return True
 
 
 """ Main Method """
