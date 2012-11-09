@@ -1,0 +1,3 @@
+# PATH changes
+export PATH=$HOME/opt/bin:$PATH
+

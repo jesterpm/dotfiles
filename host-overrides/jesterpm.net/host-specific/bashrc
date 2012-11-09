@@ -8,7 +8,3 @@ export MAILNAME="Jesse Morgan"
 export MAILHOST="jesterpm.net"
 export MAIL=$HOME/.maildir/INBOX
 export MAILDIR=$MAIL
-
-# PATH
-export PATH=$HOME/opt/bin:$PATH
-

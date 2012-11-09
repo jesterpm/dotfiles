@@ -5,7 +5,7 @@ set bg=dark
 set diffopt=filler,iwhite " keep files synced and ignore whitespace
 set expandtab             " Get rid of tabs altogether and replace with spaces
 "set guioptions-=m         " Remove menu from the gui
-"set guioptions-=T         " Remove toolbar
+set guioptions-=T         " Remove toolbar
 set hidden                " hide buffers instead of closing
 set history=50            " keep 50 lines of command line history
 set ignorecase            " Do case insensitive matching
@@ -25,6 +25,9 @@ set foldmethod=indent
 set nofen
 set mouse=a
 set spell spelllang=en
+set wildmode=list:longest,full
+set nomousehide
+set sessionoptions+=resize,winpos
 
 " filetypes
 filetype plugin on
@@ -49,6 +52,10 @@ map O5B <C-W>j
 map O5A <C-W>k
 map O5D <C-W>h
 map O5C <C-W>l
+imap O5B <C-W>j
+imap O5A <C-W>k
+imap O5D <C-W>h
+imap O5C <C-W>l
 
 "Set tab to 4 spaces
 set shiftwidth=4
@@ -62,6 +69,9 @@ map <F7> :set invpaste<CR>
 set pastetoggle=<F7>
 
 "normal mode maps
+
+" Switch to/from header file
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 "Map \e to edit a file from the directory of the current buffer
 if has("unix")

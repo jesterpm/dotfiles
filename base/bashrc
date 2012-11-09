@@ -105,5 +105,19 @@ fi
 # Personal Settings
 export EDITOR=vim
 
+if [ -f ~/.shell_pathes ]; then
+    source ~/.shell_pathes
+fi
+
 # Host Specific Settings
-source ~/.host-specific/bashrc
+if [ -f ~/.host-specific/bashrc ]; then
+    source ~/.host-specific/bashrc
+fi
+
+if [ -f ~/.host-specific/shell_pathes ]; then
+    source ~/.host-specific/shell_pathes
+fi
+
+if [ -f ~/.host-specific/bash_aliases ]; then
+    source ~/.host-specific/bash_aliases
+fi
