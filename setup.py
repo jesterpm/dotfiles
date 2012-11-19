@@ -29,7 +29,7 @@ def makeDots(base, home, nice = False, pretend = False):
     dotfiles = getMap(base + "/base/")
     
     # Get host specific overrides
-    hostname = socket.getfqdn().split(".")
+    hostname = socket.getfqdn().lower().split(".")
     for i in range(len(hostname)):
         name = string.join(hostname[-(i+1):], ".")
         directory = base + "/host-overrides/" + name
