@@ -125,6 +125,9 @@ perl <<EOT
   }
 EOT
 
+" Scratch Plugin
+let g:scratchBackupFile="/tmp/scratch.txt"
+
 " Load host-specific settings
 set runtimepath^=~/.host-specific/vim,
 set runtimepath+=~/.host-specific/vim/after
