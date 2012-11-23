@@ -84,6 +84,9 @@ def getMap(baseDirectory, directory=""):
     for filename in os.listdir(baseDirectory + directory):
         if filename == ".nolink":
             continue
+        
+        if filename == ".git":
+            continue # Skip over submodules.
 
         fullPath = baseDirectory + directory + filename
         
