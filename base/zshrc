@@ -4,6 +4,9 @@
 # functions, options, key bindings, etc.
 #
 
+# Load this first or the work desktop cries
+source ~/.host-specific/zshrc
+
 autoload -U compinit
 compinit
 
@@ -43,9 +46,8 @@ bindkey '[3~' delete-char
 zstyle ':completion:*' completer _complete _ignored _files
 
 source ~/.bash_aliases
-
-source ~/.shell_pathes
-
-source ~/.host-specific/zshrc
-source ~/.host-specific/shell_pathes
 source ~/.host-specific/bash_aliases
+
+[[ -a ~/.shell_pathes ]] && source ~/.shell_pathes
+[[ -a ~/.host-specific/shell_pathes ]] && source ~/.host-specific/shell_pathes
+
