@@ -1,3 +1,6 @@
 # PATH changes
 export PATH=$HOME/opt/bin:$PATH
 
+# CLASSPATH
+export CLASSPATH=$HOME/development/classes:$CLASSPATH
+

@@ -18,6 +18,6 @@ function! InsertJavaPackage()
 endfunction
 
 autocmd BufNewFile *.java call InsertJavaPackage()
-autocmd filetype java setlocal makeprg=ant
-autocmd filetype java setlocal efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+"autocmd filetype java setlocal makeprg=ant
+"autocmd filetype java setlocal efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
 
