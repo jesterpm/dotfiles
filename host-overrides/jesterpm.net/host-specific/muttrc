@@ -7,7 +7,7 @@ set sendmail="msmtp"
 set postponed="+postponed"
 set record="+sent-`date +%Y`"
 
-mailboxes =INBOX =archived =dc206 =probably-spam
+mailboxes =INBOX =archived =dc206 =probably-spam =theclymb
 
 subscribe list@dc206.org
 subscribe bugtraq@securityfocus.com
