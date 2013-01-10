@@ -5,7 +5,7 @@ pythonfile = ~/.offlineimap/helper.py
 [Account Jesterpm.net]
 localrepository = Local
 remoterepository = Remote
-autorefresh = 5
+#autorefresh = 5
 status_backend = sqlite
 
 [Repository Local]
@@ -15,10 +15,10 @@ localfolders = ~/.maildir
 [Repository Remote]
 type = IMAP
 remotehost = californium.jesterpm.net
-remoteusereval = get_username("californium.jesterpm.net")
-remotepasseval = get_password("californium.jesterpm.net")
+remoteusereval = "jesse"
+remotepasseval = mailpasswd("password")
 folderfilter = lambda folder: folder not in ['sent', 'search']
 ssl = yes
 maxconnections = 2
-holdconnectionopen = true
-idlefolders = ['INBOX', 'dc206']
+#holdconnectionopen = false
+#idlefolders = ['INBOX', 'dc206']

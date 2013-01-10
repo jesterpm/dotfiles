@@ -103,11 +103,24 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Personal Settings
+export TERMINAL=gnome-terminal
 export EDITOR=vim
+export MAILDIR=$HOME/.maildir/INBOX
 
 if [ -f ~/.shell_pathes ]; then
     source ~/.shell_pathes
 fi
+
+# GPG
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+    . "${HOME}/.gpg-agent-info"
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
+fi
+
+GPG_TTY=$(tty)
+export GPG_TTY
+
 
 # Host Specific Settings
 if [ -f ~/.host-specific/bashrc ]; then
