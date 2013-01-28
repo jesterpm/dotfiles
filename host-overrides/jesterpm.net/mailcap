@@ -1,0 +1,2 @@
+text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" %s
+application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" %s
