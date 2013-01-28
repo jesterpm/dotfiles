@@ -13,6 +13,7 @@ unset confirmappend
 set sort=threads
 set pager_stop=yes
 set mark_old = no
+unset markers
 
 # Headers
 ignore *

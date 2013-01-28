@@ -1,0 +1,6 @@
+[default]
+alert = False
+city = Seattle
+id = KSEA
+metric = True
+zones = WAZ508,WAZ505,WAZ509
