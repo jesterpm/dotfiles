@@ -11,4 +11,5 @@ mailboxes =INBOX =archived =dc206 =probably-spam =theclymb
 
 subscribe list@dc206.org
 subscribe bugtraq@securityfocus.com
-
+subscribe members@lists.kc4x4sar.org
+subscribe hub@lists.kc4x4sar.org
