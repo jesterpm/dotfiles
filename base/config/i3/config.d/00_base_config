@@ -2,7 +2,7 @@
 # This is my base i3 config which is shared between all hosts.
 #
 
-set $mod Mod4           # Use the windows key to control i3.
+set $mod Mod4
 floating_modifier $mod
 
 ## Visual Settings
@@ -27,7 +27,7 @@ bindsym $mod+l         focus right
 bindsym Mod1+Tab       focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $mod+a         focus parent
-bindcode $mod+d        focus child
+bindsym $mod+d         focus child
 
 ### Window Moving Commands
 bindsym $mod+Shift+H   move left
