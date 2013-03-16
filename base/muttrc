@@ -14,6 +14,8 @@ set sort=threads
 set pager_stop=yes
 set mark_old = no
 unset markers
+set text_flowed=yes
+set display_filter="~/bin/mutt-display-filter.sh"
 
 # Headers
 ignore *
@@ -42,3 +44,5 @@ color index brightwhite default ~O
 
 # Grab any host-specific settings
 source ~/.host-specific/muttrc
+
+source ~/.mutt/aliases
