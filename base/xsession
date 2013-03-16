@@ -24,4 +24,8 @@ if [ -f ~/.host-specific/xession ]; then
     source ~/.host-specific/xsession
 fi
 
+# Make the i3 config
+
+make_i3_config > $HOME/.config/i3/config
+
 exec i3

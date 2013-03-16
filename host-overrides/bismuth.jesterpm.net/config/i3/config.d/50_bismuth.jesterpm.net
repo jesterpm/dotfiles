@@ -1,0 +1,7 @@
+## This config is specific to Bismuth
+
+workspace "1: irssi"   output VGA-0
+workspace "2: web"     output VGA-0
+workspace "3: dev"     output VGA-0
+workspace "10: April"  output VGA-0
+

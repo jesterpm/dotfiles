@@ -1,0 +1,2 @@
+exec --no-startup-id gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
+
