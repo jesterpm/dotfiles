@@ -1,0 +1,39 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+use_spacer left
+
+update_interval 2.0
+cpu_avg_samples 2
+net_avg_samples 2
+
+#${if_xmms2_connected}
+#{ "full_text":"${xmms2_title} - ${xmms2_artist}" },
+#${endif}
+
+TEXT
+[
+
+{ "full_text": "✉ ${new_mails $HOME/.maildir/INBOX/}/${mails $HOME/.maildir/INBOX}",
+  "color": ${if_match ${new_mails $HOME/.maildir/INBOX/}>0}"\#00ff00"${else}"\#ffffff"${endif} },
+ 
+{ "full_text":"/home ${fs_free /home}",
+  "color": ${if_match ${fs_free_perc /home}<5}"\#ff0000"${else}"\#ffffff"${endif} },
+
+{ "full_text":"RAM ${memperc}%",
+  "color":${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} },
+
+{ "full_text":"BATT ${battery BAT0}" }, 
+
+{ "full_text":"${execi 300 weatherbar.sh}" },
+
+{ "full_text":"${loadavg 1}" },
+
+{ "full_text":"♪ ${exec pactl list sinks | awk '/Volume: 0:/ {print substr($3, 1, index($3, "%") - 1)}'|head -n 1}" },
+
+{ "full_text":"${time %a %d %b %Y} ${time %H:%M:%S}",
+  "short_text":"${time %H:%M:%S}" }
+
+],

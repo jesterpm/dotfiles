@@ -1,2 +1,4 @@
 text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" %s
 application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" %s
+
+text/html; pandoc -f html -t markdown --reference-links; copiousoutput; compose=vim %s
