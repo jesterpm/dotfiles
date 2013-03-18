@@ -1,2 +1,2 @@
-exec pidgin
+workspace number 1; exec pidgin
 
