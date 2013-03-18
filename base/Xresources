@@ -1,5 +1,7 @@
+*color12: #5895cf
+
 Rxvt.background: black
 Rxvt.foreground: white
 Rxvt.scrollBar: false
 Rxvt.font: xft:Monospace:size=10:autohint=true
-Rxvt.letterSpace: 0
+Rxvt.letterSpace: -1
