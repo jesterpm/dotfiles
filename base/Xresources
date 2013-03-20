@@ -1,7 +1,7 @@
 *color12: #5895cf
 
-Rxvt.background: black
+Rxvt.background: #1a1a1a
 Rxvt.foreground: white
 Rxvt.scrollBar: false
-Rxvt.font: xft:Monospace:size=10:autohint=true
-Rxvt.letterSpace: -1
+Rxvt.font: xft:UbuntuMono:size=12:autohint=true
+Rxvt.letterSpace: 0

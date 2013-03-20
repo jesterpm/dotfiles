@@ -18,6 +18,7 @@ ulimit -c unlimited
 (sleep 5; nitrogen --restore) &
 gtk-theme-switch2 -i Ambiance
 xrdb $HOME/.Xresources
+urxvtd -q -f -o
 
 # Host Specific Settings
 if [ -f ~/.host-specific/xession ]; then
