@@ -64,10 +64,14 @@ def makeLinks(dotfiles, prefix, nice, pretend):
 
         else:
             try:
+                fileExists = os.path.lexists(realDest)
                 if not pretend:
                     success = makeLink(src, realDest, nice)
 
-                print "%50s => %s" % (realDest, src)
+		if fileExists:
+                    print "%50s !=> %s" % (realDest, src)
+                else:
+                    print "%50s => %s" % (realDest, src)
 
             except IOError,e:
                 print "Not linking %s to %s because IOError: %s" % (realDest, src, str(e))
