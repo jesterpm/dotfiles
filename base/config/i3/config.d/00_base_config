@@ -78,6 +78,10 @@ bindsym $mod+Shift+parenright  move workspace number 10
 bindsym $mod+Shift+Left        move workspace prev
 bindsym $mod+Shift+Right       move workspace next
 
+### Move workspace to different monitor
+bindsym $mod+Mod1+Left         move workspace to output left
+bindsym $mod+Mod1+Right        move workspace to output right
+
 workspace_auto_back_and_forth yes
 
 ### Scratchpad
@@ -121,6 +125,9 @@ bar {
 
 
 ## Misc. Bindings
+
+### Music
+bindsym $mod+End   exec xmms2 toggle
 
 ### Volume
 bindsym $mod+Prior exec pactl set-sink-volume -- 0 "+2%"
