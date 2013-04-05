@@ -5,3 +5,5 @@ Rxvt.foreground: white
 Rxvt.scrollBar: false
 Rxvt.font: xft:UbuntuMono:size=12:autohint=true
 Rxvt.letterSpace: 0
+
+URxvt*urgentOnBell: true
