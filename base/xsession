@@ -29,4 +29,8 @@ fi
 
 make_i3_config > $HOME/.config/i3/config
 
-exec i3
+if [ -x ~/dev/i3/i3 ]; then
+    exec ~/dev/i3/i3
+else
+    exec i3
+fi
