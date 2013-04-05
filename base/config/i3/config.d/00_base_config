@@ -120,7 +120,7 @@ bar {
     status_command conky-i3bar
     position top
     tray_output primary
-    font xft:UbuntuMono 10
+    font xft:Monospace 8
 }
 
 
