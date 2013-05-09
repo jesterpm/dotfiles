@@ -9,12 +9,13 @@ update_interval 2.0
 cpu_avg_samples 2
 net_avg_samples 2
 
-#${if_xmms2_connected}
-#{ "full_text":"${xmms2_title} - ${xmms2_artist}" },
-#${endif}
-
 TEXT
 [
+${if_xmms2_connected}
+${if_match "${xmms2_status}" == "Playing"}
+{ "full_text":"${xmms2_smart}" },
+${endif}
+${endif}
 
 { "full_text": "✉ ${new_mails $HOME/.maildir/INBOX/}/${mails $HOME/.maildir/INBOX}",
   "color": ${if_match ${new_mails $HOME/.maildir/INBOX/}>0}"\#00ff00"${else}"\#ffffff"${endif} },
