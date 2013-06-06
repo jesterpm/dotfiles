@@ -11,6 +11,7 @@ set header_cache=~/.maildir/mutt_cache/
 set delete=yes
 unset confirmappend
 set sort=threads
+set sort_aux = last-date-received
 set pager_stop=yes
 set mark_old = no
 unset markers
