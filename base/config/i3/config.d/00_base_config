@@ -10,7 +10,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 hide_edge_borders both
 
 ## Bindings to start programs
-bindsym $mod+space exec i3-dmenu-desktop
+bindsym $mod+space exec dmenu_run
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -121,7 +121,7 @@ bar {
     status_command conky-i3bar
     position top
     tray_output primary
-    font xft:Monospace 8
+    font xft:Inconsolata 10
 }
 
 

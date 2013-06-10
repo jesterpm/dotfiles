@@ -11,7 +11,16 @@ Xft.lcdfilter: lcddefault
 Rxvt.background: #1a1a1a
 Rxvt.foreground: white
 Rxvt.scrollBar: false
-Rxvt.font: xft:Monospace:size=10:autohint=true
-Rxvt.letterSpace: 0
+Rxvt.font: xft:Inconsolata:size=11:autohint=true
+!Rxvt.letterSpace: 0
+Rxvt.fade: 25
 
 URxvt*urgentOnBell: true
+URxvt*transparent: true
+URxvt*shading: 15
+
+XTerm*background: rgb:1a/1a/1a
+XTerm*foreground: white
+XTerm*scrollBar: false
+XTerm*faceName: xft:Inconsolata:size=11:autohint=true
+XTerm*bellIsUrgent: true
