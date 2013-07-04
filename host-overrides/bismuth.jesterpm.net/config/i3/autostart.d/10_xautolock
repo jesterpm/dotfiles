@@ -1,0 +1,2 @@
+exec --no-startup-id xautolock -time 20 -locker lock -corners 0-00
+
