@@ -127,6 +127,9 @@ bar {
 
 ## Misc. Bindings
 
+## sshclip
+bindsym $mod+g     exec sshclip
+
 ### Music
 bindsym $mod+End   exec xmms2 toggle
 
