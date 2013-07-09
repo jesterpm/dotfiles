@@ -6,6 +6,7 @@ Xft.dpi: 96
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
+*color4: royalblue
 *color12: #5895cf
 
 Rxvt.background: #1a1a1a
