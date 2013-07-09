@@ -22,5 +22,6 @@ URxvt*shading: 15
 XTerm*background: rgb:1a/1a/1a
 XTerm*foreground: white
 XTerm*scrollBar: false
-XTerm*faceName: xft:Inconsolata:size=11:autohint=true
+XTerm*faceName: xft:Inconsolata:size=12:autohint=true
 XTerm*bellIsUrgent: true
+XTerm*eightBitInput: false
