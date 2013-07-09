@@ -1,6 +1,6 @@
 # Set my editor and terminal
-export EDITOR=vim
 export TERMINAL=urxvt
+export EDITOR=vim
 
 # Some X Stuff
 xsetroot -solid "#333333"
@@ -18,11 +18,10 @@ ulimit -c unlimited
 (sleep 5; nitrogen --restore) &
 gtk-theme-switch2 -i Ambiance
 xrdb $HOME/.Xresources
-urxvtd -q -f -o
 
 # Host Specific Settings
-if [ -f ~/.host-specific/xession ]; then
-    source ~/.host-specific/xsession
+if [ -f $HOME/.host-specific/xsession ]; then
+    source $HOME/.host-specific/xsession
 fi
 
 # Make the i3 config

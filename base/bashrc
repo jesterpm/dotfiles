@@ -103,7 +103,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Personal Settings
-export TERMINAL=gnome-terminal
 export EDITOR=vim
 export MAILDIR=$HOME/.maildir/INBOX
 
