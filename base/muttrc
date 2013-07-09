@@ -43,6 +43,18 @@ macro index \es <change-folder>'=search'<enter><shell-escape>'mairix ' 'Enter Ma
 color index brightwhite default ~N 
 color index brightwhite default ~O
 
+# colors
+color normal	white black
+color attachment brightyellow black
+color hdrdefault white black
+color indicator black white
+color markers	brightred black
+color quoted	green black
+color signature cyan black
+color status	black white
+color tilde	blue black
+color tree	red black
+
 # Grab any host-specific settings
 source ~/.host-specific/muttrc
 
