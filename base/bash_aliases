@@ -1,1 +1,2 @@
 alias open=gnome-open
+alias g="gvim --remote-silent"
