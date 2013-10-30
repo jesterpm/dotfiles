@@ -132,6 +132,7 @@ bindsym $mod+g     exec sshclip
 
 ### Music
 bindsym $mod+End   exec xmms2 toggle
+bindsym $mod+Home  exec xmms2 next
 
 ### Volume
 bindsym $mod+Prior exec pactl set-sink-volume -- 0 "+2%"
