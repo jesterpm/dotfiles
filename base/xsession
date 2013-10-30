@@ -2,6 +2,15 @@
 export TERMINAL=urxvt
 export EDITOR=vim
 
+if [ -f ~/.shell_pathes ]; then
+    source ~/.shell_pathes
+fi
+
+# Host Specific Settings
+if [ -f ~/.host-specific/shell_pathes ]; then
+    source ~/.host-specific/shell_pathes
+fi
+
 # Some X Stuff
 xsetroot -solid "#333333"
 ulimit -c unlimited
