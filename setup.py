@@ -137,7 +137,7 @@ def main(argv=None):
         # Settings:
         nice = False
         pretend = False
-        home = os.environ["HOME"]
+        home = os.environ.get("HOME")
 
         for o, a in opts:
             if o in ("-h", "--help"):
@@ -152,6 +152,9 @@ def main(argv=None):
 
             elif o in ("-d", "--home"):
                 home = a
+
+        if not home:
+            raise Usage("No home provided")
 
         makeDots(os.getcwd(), home, nice, pretend)
 
