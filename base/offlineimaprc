@@ -1,6 +1,6 @@
 [general]
 accounts = Jesterpm.net
-pythonfile = ~/.offlineimap/helper.py
+#pythonfile = ~/.offlineimap/helper.py
 
 [Account Jesterpm.net]
 localrepository = Local
@@ -15,8 +15,8 @@ localfolders = ~/.maildir
 [Repository Remote]
 type = IMAP
 remotehost = californium.jesterpm.net
-remoteusereval = "jesse"
-remotepasseval = mailpasswd("password")
+remoteusereval = "jesterpm"
+#remotepasseval = mailpasswd("password")
 folderfilter = lambda folder: folder not in ['sent', 'search']
 ssl = yes
 maxconnections = 2
