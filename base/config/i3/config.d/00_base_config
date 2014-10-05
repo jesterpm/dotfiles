@@ -10,7 +10,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 hide_edge_borders both
 
 ## Bindings to start programs
-bindsym $mod+space exec dmenu_run
+bindsym $mod+space exec dmenu_run -l 20
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -119,7 +119,7 @@ mode "resize" {
 ## i3bar Settings
 bar {
     status_command conky-i3bar
-    position top
+    position bottom
     tray_output primary
     font xft:Inconsolata 10
 }
@@ -129,6 +129,8 @@ bar {
 
 ## sshclip
 bindsym $mod+g     exec sshclip
+
+bindsym $mod+c     exec clipmv
 
 ### Music
 bindsym $mod+End   exec xmms2 toggle
