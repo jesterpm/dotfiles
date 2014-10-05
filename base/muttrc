@@ -17,6 +17,7 @@ set mark_old = no
 unset markers
 set text_flowed=yes
 set display_filter="~/bin/mutt-display-filter.sh"
+auto_view text/html
 
 # Headers
 ignore *
