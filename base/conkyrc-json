@@ -34,7 +34,7 @@ ${endif}
 
 { "full_text":"♪ ${exec pactl list sinks | awk '/Volume: 0:/ {print substr($3, 1, index($3, "%") - 1)}'|head -n 1}" },
 
-{ "full_text":"${time %a %d %b %Y} ${time %H:%M:%S}",
+{ "full_text":"${time %a %d %b %Y} ${time %H:%M:%S} ${utime %H:%M}",
   "short_text":"${time %H:%M:%S}" }
 
 ],

@@ -1,5 +1,5 @@
 " Setting editor defaults
-set nu
+set rnu
 syntax on
 set bg=dark
 set diffopt=filler,iwhite " keep files synced and ignore whitespace
@@ -39,12 +39,22 @@ set statusline+=%<%f\ %h%m%r
 set statusline+=%=
 set statusline+=%-14.(%l,%c%V%)\ %P
 
+" Emacs-like bindings in the command line
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+
 " filetypes
 filetype plugin on
 filetype indent on
 filetype on
 
-"Set colorscheme. 
+"Set colorscheme.
 colorscheme slate
 
 " Turn off highlighting after search
@@ -131,10 +141,10 @@ EOT
 " Scratch Plugin
 let g:scratchBackupFile="/tmp/scratch.txt"
 
-iab --> →
-
 " Quicker compile & check
 map <C-x> :silent make<Enter>:copen<Enter><C-w><C-w>:redraw<Enter>
+
+execute pathogen#infect()
 
 " Load host-specific settings
 set runtimepath^=~/.host-specific/vim,
