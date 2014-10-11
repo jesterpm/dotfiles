@@ -28,6 +28,9 @@ set forward_format="Fwd: %s"
 macro pager <Up> "<previous-line>" "Previous line"
 macro pager <Down> "<next-line>" "Next line"
 
+bind index gg       first-entry
+bind index G        last-entry
+bind index R        group-reply
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
@@ -37,24 +40,25 @@ macro pager e "<save-message>+archived<enter>" "Archive a message."
 macro index S "<save-message>+spam<enter>" "Report message as spam."
 macro index d "<save-message>+trash<enter>" "Move to trash"
 macro pager d "<save-message>+trash<enter>" "Move to trash"
+macro pager \Cu "|urlview<enter>" "view links in urlview"
 
-macro index \es <change-folder>'=search'<enter><shell-escape>'mairix ' 'Enter Mairix search term'
+macro index \es "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.maildir/search<enter><change-folder-readonly>=search<enter>" "Search All Mail"
 
 # Colors
-color index brightwhite default ~N 
-color index brightwhite default ~O
-
-# colors
-color normal	white black
-color attachment brightyellow black
-color hdrdefault white black
-color indicator black white
-color markers	brightred black
-color quoted	green black
-color signature cyan black
-color status	black white
-color tilde	blue black
-color tree	red black
+#color index brightwhite default ~N 
+#color index brightwhite default ~O
+#
+## colors
+#color normal	white black
+#color attachment brightyellow black
+#color hdrdefault white black
+#color indicator black white
+#color markers	brightred black
+#color quoted	green black
+#color signature cyan black
+#color status	black white
+#color tilde	blue black
+#color tree	red black
 
 # Grab any host-specific settings
 source ~/.host-specific/muttrc
