@@ -29,7 +29,7 @@ set nomousehide
 set sessionoptions+=resize,winpos
 set listchars=tab:>-,trail:.
 set list
-set colorcolumn=100
+set colorcolumn=100,+0
 
 " Status Line Settings
 set laststatus=2          " always have status bar
@@ -56,6 +56,7 @@ filetype on
 
 "Set colorscheme.
 colorscheme slate
+highlight ColorColumn ctermbg=DarkGrey guibg=DarkGrey
 
 " Turn off highlighting after search
 map ,, :nohl<CR>
