@@ -147,6 +147,16 @@ map <C-x> :silent make<Enter>:copen<Enter><C-w><C-w>:redraw<Enter>
 
 execute pathogen#infect()
 
+" Spell Check colors
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
+
 " Load host-specific settings
 set runtimepath^=~/.host-specific/vim,
 set runtimepath+=~/.host-specific/vim/after

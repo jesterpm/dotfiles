@@ -26,4 +26,6 @@ XTerm*scrollBar: false
 XTerm*faceName: xft:Inconsolata:size=12:autohint=true
 XTerm*bellIsUrgent: true
 XTerm*eightBitInput: false
-
+XTerm*metaSendsEscape: true
+xterm*termName: xterm-256color
+XTerm*locale: true

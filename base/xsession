@@ -1,6 +1,8 @@
 # Set my editor and terminal
-export TERMINAL=urxvt
+export TERMINAL=urxvtc
 export EDITOR=vim
+export LANG=en_US.utf8
+export LC_ALL=en_US.utf8
 
 if [ -f ~/.shell_pathes ]; then
     source ~/.shell_pathes
@@ -16,6 +18,7 @@ xsetroot -solid "#333333"
 ulimit -c unlimited
 
 # Startup applications
+/usr/lib/deja-dup/deja-dup/deja-dup-monitor &
 /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
 /usr/lib/notification-daemon/notification-daemon &
 (sleep 8; start-pulseaudio-x11) &
@@ -23,15 +26,23 @@ ulimit -c unlimited
 (sleep 5; gnome-sound-applet) &
 (sleep 5; nm-applet) &
 (sleep 5; system-config-printer-applet) &
-#eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 (sleep 5; nitrogen --restore) &
 gtk-theme-switch2 -i Ambiance
 xrdb $HOME/.Xresources
+
+source $HOME/.gpg-agent-info
+export GPG_AGENT_INFO
+export SSH_AUTH_SOCK
+export SSH_AGENT_PID
+
 
 # Host Specific Settings
 if [ -f $HOME/.host-specific/xsession ]; then
     source $HOME/.host-specific/xsession
 fi
+
+# Start terminal daemon
+urxvtd -f -o
 
 # Make the i3 config
 

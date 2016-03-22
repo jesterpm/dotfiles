@@ -7,7 +7,7 @@ floating_modifier $mod
 
 ## Visual Settings
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-hide_edge_borders both
+#hide_edge_borders both
 
 ## Bindings to start programs
 bindsym $mod+space exec dmenu_run -l 20
@@ -94,7 +94,7 @@ bindsym $mod+minus        scratchpad show
 bindsym $mod+Shift+C     exec "make_i3_config > $HOME/.config/i3/config"; reload
 bindsym $mod+Shift+R     restart
 bindsym $mod+Shift+E     exit 
-bindsym Control+mod1+l   exec xautolock -locknow
+bindsym Control+mod1+l   exec $HOME/bin/lock
 
 
 ## Alternative modes
@@ -137,12 +137,12 @@ bindsym $mod+End   exec xmms2 toggle
 bindsym $mod+Home  exec xmms2 next
 
 ### Volume
-bindsym $mod+Prior exec pactl set-sink-volume -- 0 "+2%"
-bindsym $mod+Next  exec pactl set-sink-volume -- 0 "-2%"
+bindsym $mod+Prior exec pactl set-sink-volume -- 1 "+2%"
+bindsym $mod+Next  exec pactl set-sink-volume -- 1 "-2%"
 
 
 ## Specific Window Settings
 for_window [class="Gcalctool"]        floating enable
 for_window [class="Gnome-calculator"] floating enable
-
+for_window [class="file_progress"] floating enable
 
