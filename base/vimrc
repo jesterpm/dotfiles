@@ -1,5 +1,5 @@
 " Setting editor defaults
-set rnu
+set nu
 syntax on
 set bg=dark
 set diffopt=filler,iwhite " keep files synced and ignore whitespace
@@ -144,6 +144,8 @@ let g:scratchBackupFile="/tmp/scratch.txt"
 
 " Quicker compile & check
 map <C-x> :silent make<Enter>:copen<Enter><C-w><C-w>:redraw<Enter>
+
+let g:GPGFilePattern = '*.\(gpg\|pgp\)'
 
 execute pathogen#infect()
 
