@@ -18,6 +18,7 @@ unset markers
 set text_flowed=yes
 set display_filter="~/bin/mutt-display-filter.sh"
 auto_view text/html
+alternative_order text/plain text/enriched text/html
 
 # Headers
 ignore *
@@ -28,6 +29,7 @@ set forward_format="Fwd: %s"
 macro pager <Up> "<previous-line>" "Previous line"
 macro pager <Down> "<next-line>" "Next line"
 
+bind index g        noop
 bind index gg       first-entry
 bind index G        last-entry
 bind index R        group-reply
@@ -35,14 +37,17 @@ macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-macro index e "<save-message>+archived<enter>" "Archive a message."
-macro pager e "<save-message>+archived<enter>" "Archive a message."
+# For gmail, don't move the message to archive, just remove it from the inbox.
+#macro index e "<save-message>+archive<enter>" "Archive a message."
+#macro pager e "<save-message>+archive<enter>" "Archive a message."
+macro index e "<delete-message>" "Archive a message."
+macro pager e "<delete-message>" "Archive a message."
 macro index S "<save-message>+spam<enter>" "Report message as spam."
 macro index d "<save-message>+trash<enter>" "Move to trash"
 macro pager d "<save-message>+trash<enter>" "Move to trash"
 macro pager \Cu "|urlview<enter>" "view links in urlview"
 
-macro index \es "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.maildir/search<enter><change-folder-readonly>=search<enter>" "Search All Mail"
+macro index \es "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results/<enter>" "Search All Mail"
 
 # Colors
 #color index brightwhite default ~N 

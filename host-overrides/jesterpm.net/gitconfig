@@ -3,3 +3,5 @@
 	email = jesse@jesterpm.net
 [color]
 	ui = true
+[alias]
+	lg = log --decorate --graph

@@ -118,27 +118,6 @@ endfunction
 " Run it every time we change buffers
 autocmd BufEnter,BufFilePost * call SetTitle()
 
-perl <<EOT
-  # Get the user name, should probably get the home dir...
-  my $home_dir = (getpwuid($<))[7];
-
-  if ( -e $home_dir ) {
-    my $temp_location = "$home_dir/.vim-tmp";
-    my $tmp_dir = $temp_location . '/vXXX';
-    my $swp_dir = $temp_location . '/swps';
-
-    # If the location doesn't exist, create it
-    mkdir $temp_location unless ( -e $temp_location );
-
-    mkdir $tmp_dir unless ( -e $tmp_dir );
-    mkdir $swp_dir unless ( -e $swp_dir );
-
-    # Set TMPDIR and directory to the new location
-    VIM::DoCommand("let \$TMPDIR = '" . $tmp_dir . "'") if ( -w $tmp_dir );
-    VIM::DoCommand("set directory=" . $swp_dir) if ( -w $swp_dir );
-  }
-EOT
-
 " Scratch Plugin
 let g:scratchBackupFile="/tmp/scratch.txt"
 
@@ -158,6 +137,11 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+
+" ctrlp
+let g:ctrlp_extensions = ['tag', 'buffertag']
+map <C-r> :CtrlPTag<Enter>
+map <C-y> :redo<Enter>
 
 " Load host-specific settings
 set runtimepath^=~/.host-specific/vim,
