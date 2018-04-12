@@ -1,0 +1,52 @@
+IMAPAccount gmail
+Host imap.gmail.com
+User jesterpm@gmail.com
+PassCmd "imap-pass -g jesterpm@gmail.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.maildir/
+Inbox ~/.maildir/INBOX
+
+Channel sync-gmail-default
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns "INBOX"
+Expunge Both
+
+Channel sync-gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:sent
+Expunge Both
+
+Channel sync-gmail-trash
+Master :gmail-remote:"[Gmail]/Bin"
+Slave :gmail-local:trash
+Expunge Both
+
+Channel sync-gmail-drafts
+Master :gmail-remote:"[Gmail]/Drafts"
+Slave :gmail-local:drafts
+Expunge Both
+
+Channel sync-gmail-archive
+Master :gmail-remote:"[Gmail]/All Mail"
+Slave :gmail-local:archive
+Expunge Both
+
+Channel sync-gmail-spam
+Master :gmail-remote:"[Gmail]/Spam"
+Slave :gmail-local:spam
+Expunge Both
+
+Group gmail
+Channel sync-gmail-default
+Channel sync-gmail-sent
+Channel sync-gmail-trash
+Channel sync-gmail-drafts
+Channel sync-gmail-archive
+Channel sync-gmail-spam
