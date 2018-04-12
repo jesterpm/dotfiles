@@ -14,27 +14,24 @@ if [ -f ~/.host-specific/shell_pathes ]; then
 fi
 
 # Some X Stuff
-xsetroot -solid "#333333"
+xsetroot -solid "#111"
 ulimit -c unlimited
 
 # Startup applications
-/usr/lib/deja-dup/deja-dup/deja-dup-monitor &
-/usr/lib/gnome-settings-daemon/gnome-settings-daemon &
+#/usr/lib/deja-dup/deja-dup/deja-dup-monitor &
+#/usr/lib/gnome-settings-daemon/gnome-settings-daemon &
 /usr/lib/notification-daemon/notification-daemon &
 (sleep 8; start-pulseaudio-x11) &
 (sleep 60; update-notifier) &
-(sleep 5; gnome-sound-applet) &
+#(sleep 5; gnome-sound-applet) &
 (sleep 5; nm-applet) &
 (sleep 5; system-config-printer-applet) &
-(sleep 5; nitrogen --restore) &
-gtk-theme-switch2 -i Ambiance
-xrdb $HOME/.Xresources
+#(sleep 5; nitrogen --restore) &
+#gtk-theme-switch2 -i Ambiance
+xrdb -merge $HOME/.Xresources
 
-source $HOME/.gpg-agent-info
-export GPG_AGENT_INFO
-export SSH_AUTH_SOCK
-export SSH_AGENT_PID
-
+# Disable bell
+xset -b
 
 # Host Specific Settings
 if [ -f $HOME/.host-specific/xsession ]; then
@@ -48,8 +45,4 @@ urxvtd -f -o
 
 make_i3_config > $HOME/.config/i3/config
 
-if [ -x ~/dev/i3/i3 ]; then
-    exec ~/dev/i3/i3
-else
-    exec i3
-fi
+exec i3

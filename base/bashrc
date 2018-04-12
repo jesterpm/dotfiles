@@ -49,9 +49,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
 GIT_PS1_SHOWDIRTYSTATE=1
 
 if [ "$color_prompt" = yes ]; then
@@ -111,15 +108,10 @@ fi
 export EDITOR=vim
 export MAILDIR=$HOME/.maildir/INBOX
 
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-#if [ -f "${HOME}/.gpg-agent-info" ]; then
-#    . "${HOME}/.gpg-agent-info"
-#    export GPG_AGENT_INFO
-#    export SSH_AUTH_SOCK
-#    export SSH_AGENT_PID
-#fi
+#export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-source /usr/local/etc/bash_completion.d/*
+#source /usr/local/etc/bash_completion.d/*
 
 if [ -f ~/.shell_pathes ]; then
     source ~/.shell_pathes

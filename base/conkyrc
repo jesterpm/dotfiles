@@ -10,12 +10,11 @@ cpu_avg_samples 2
 net_avg_samples 2
 
 TEXT
-${if_xmms2_connected}${xmms2_title} - ${xmms2_artist} | ${endif}\
 ✉ ${new_mails $HOME/.maildir/INBOX/}/${mails $HOME/.maildir/INBOX} | \
 /home ${fs_free /home} | \
 RAM ${memperc}% | \
 BATT ${battery BAT0} | \
 ${execi 300 weatherbar.sh} | \
 ${loadavg 1} | \
-♪ ${exec pactl list sinks | awk '/Volume: 0:/ {print substr($3, 1, index($3, "%") - 1)}'|head -n 1} | \
+♪ ${exec pactl list sinks | awk '/Volume: 0:/ {print substr($3, 1, index($3, "%") - 2)}'|head -n 1} | \
 ${time %a %d %b %Y} ${time %H:%M:%S} 

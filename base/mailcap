@@ -2,3 +2,9 @@ text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" %s
 application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" %s
 
 text/html; pandoc -f html -t markdown --reference-links; copiousoutput; compose=vim %s
+
+application/pdf; evince %s; test=test -n "$DISPLAY"
+application/x-bzpdf; evince %s; test=test -n "$DISPLAY"
+application/x-ext-pdf; evince %s; test=test -n "$DISPLAY"
+application/x-gzpdf; evince %s; test=test -n "$DISPLAY"
+application/x-xzpdf; evince %s; test=test -n "$DISPLAY"

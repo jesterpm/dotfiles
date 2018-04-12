@@ -142,6 +142,7 @@ highlight SpellLocal term=underline cterm=underline
 let g:ctrlp_extensions = ['tag', 'buffertag']
 map <C-r> :CtrlPTag<Enter>
 map <C-y> :redo<Enter>
+set scroll=2
 
 " Load host-specific settings
 set runtimepath^=~/.host-specific/vim,

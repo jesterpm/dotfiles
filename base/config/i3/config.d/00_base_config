@@ -6,8 +6,8 @@ set $mod Mod4
 floating_modifier $mod
 
 ## Visual Settings
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#hide_edge_borders both
+font xft:Inconsolata 10
+hide_edge_borders both
 
 ## Bindings to start programs
 bindsym $mod+space exec dmenu_run -l 20
@@ -93,7 +93,7 @@ bindsym $mod+minus        scratchpad show
 ## Bindings to contorl the session
 bindsym $mod+Shift+C     exec "make_i3_config > $HOME/.config/i3/config"; reload
 bindsym $mod+Shift+R     restart
-bindsym $mod+Shift+E     exit 
+bindsym $mod+Shift+E     exit
 bindsym Control+mod1+l   exec $HOME/bin/lock
 
 
@@ -105,12 +105,12 @@ mode "resize" {
     bindsym h          resize shrink left  10 px or 10 ppt
     bindsym Shift+H    resize grow   left  10 px or 10 ppt
     bindsym j          resize shrink down  10 px or 10 ppt
-    bindsym Shift+j    resize grow   down  10 px or 10 ppt 
+    bindsym Shift+j    resize grow   down  10 px or 10 ppt
     bindsym k          resize shrink up    10 px or 10 ppt
     bindsym Shift+K    resize grow   up    10 px or 10 ppt
     bindsym l          resize shrink right 10 px or 10 ppt
     bindsym Shift+L    resize grow   right 10 px or 10 ppt
-    
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -133,13 +133,18 @@ bindsym $mod+g     exec sshclip
 bindsym $mod+c     exec clipmv
 
 ### Music
-bindsym $mod+End   exec xmms2 toggle
-bindsym $mod+Home  exec xmms2 next
+bindsym XF86AudioPlay exec xmms2 toggle
+bindsym XF86AudioNext exec xmms2 next
+bindsym XF86AudioPrev exec xmms2 prev
 
 ### Volume
-bindsym $mod+Prior exec pactl set-sink-volume -- 1 "+2%"
-bindsym $mod+Next  exec pactl set-sink-volume -- 1 "-2%"
+bindsym XF86AudioRaiseVolume exec "amixer -q set Master 5%+ unmute; amixer -q set Speaker unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q set Master 5%- unmute; amixer -q set Speaker unmute"
+bindsym XF86AudioMute exec amixer -q set Master mute
 
+### Brightness
+bindsym XF86MonBrightnessUp exec "brightnessctl set +5%"
+bindsym XF86MonBrightnessDown exec "brightnessctl set 5%-"
 
 ## Specific Window Settings
 for_window [class="Gcalctool"]        floating enable

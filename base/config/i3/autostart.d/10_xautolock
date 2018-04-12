@@ -1,2 +1,3 @@
-exec --no-startup-id xautolock -time 5 -locker lock -corners 0-00
+#exec --no-startup-id xautolock -time 5 -locker lock -corners 0-00
+exec --no-startup-id gnome-screensaver
 
