@@ -1,7 +1,12 @@
 [user]
 	name = Jesse Morgan
 	email = jesse@jesterpm.net
+	signkey = 08311F3C
 [color]
 	ui = true
 [alias]
 	lg = log --decorate --graph
+[push]
+	default = simple
+[commit]
+	gpgsign = true

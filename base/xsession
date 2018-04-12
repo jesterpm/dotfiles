@@ -16,6 +16,7 @@ fi
 # Some X Stuff
 xsetroot -solid "#111"
 ulimit -c unlimited
+setxkbmap -option compose:menu
 
 # Startup applications
 #/usr/lib/deja-dup/deja-dup/deja-dup-monitor &
@@ -34,12 +35,12 @@ xrdb -merge $HOME/.Xresources
 xset -b
 
 # Host Specific Settings
-if [ -f $HOME/.host-specific/xsession ]; then
-    source $HOME/.host-specific/xsession
+if [ -f ~/.host-specific/xsession ]; then
+    source ~/.host-specific/xsession
 fi
 
 # Start terminal daemon
-urxvtd -f -o
+urxvtd -q -f -o
 
 # Make the i3 config
 
