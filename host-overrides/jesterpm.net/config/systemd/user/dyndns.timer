@@ -1,0 +1,10 @@
+[Unit]
+Description=DynDNS Service
+
+[Timer]
+OnCalendar=*-*-* *:00/5:00
+Persistent=true
+Unit=dyndns.service
+
+[Install]
+WantedBy=timers.target
