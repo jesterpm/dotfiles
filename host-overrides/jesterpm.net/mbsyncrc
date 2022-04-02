@@ -3,7 +3,7 @@ Host imap.gmail.com
 User jesterpm@gmail.com
 PassCmd "imap-pass -g jesterpm@gmail.com"
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile ~/.cert/imap.gmail.com.pem
 
 IMAPStore gmail-remote
 Account gmail

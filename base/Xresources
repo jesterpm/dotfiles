@@ -12,18 +12,20 @@ Xft.lcdfilter: lcddefault
 Rxvt.background: #1a1a1a
 Rxvt.foreground: grey
 Rxvt.scrollBar: false
-Rxvt.font: xft:Inconsolata:size=12:autohint=true
+Rxvt.font: xft:Inconsolata:size=10:autohint=true
 Rxvt.fade: 5
 Rxvt.termName: xterm
 
 URxvt*urgentOnBell: true
 URxvt*transparent: true
 URxvt*shading: 20
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 XTerm*background: rgb:1a/1a/1a
 XTerm*foreground: grey
 XTerm*scrollBar: false
-XTerm*faceName: xft:Inconsolata:size=12:autohint=true
+XTerm*faceName: xft:Inconsolata:size=7:autohint=true
 XTerm*bellIsUrgent: true
 XTerm*eightBitInput: false
 XTerm*metaSendsEscape: true

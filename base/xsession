@@ -4,6 +4,8 @@ export EDITOR=vim
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
 
+systemctl --user import-environment DISPLAY PATH
+
 if [ -f ~/.shell_pathes ]; then
     source ~/.shell_pathes
 fi
@@ -19,17 +21,20 @@ ulimit -c unlimited
 setxkbmap -option compose:menu
 
 # Startup applications
+xrandr --dpi 96
+xrdb -merge $HOME/.Xresources
 #/usr/lib/deja-dup/deja-dup/deja-dup-monitor &
 #/usr/lib/gnome-settings-daemon/gnome-settings-daemon &
 /usr/lib/notification-daemon/notification-daemon &
 (sleep 8; start-pulseaudio-x11) &
-(sleep 60; update-notifier) &
+#(sleep 60; update-notifier) &
 #(sleep 5; gnome-sound-applet) &
 (sleep 5; nm-applet) &
 (sleep 5; system-config-printer-applet) &
 #(sleep 5; nitrogen --restore) &
 #gtk-theme-switch2 -i Ambiance
-xrdb -merge $HOME/.Xresources
+(sleep 10; redshift-gtk) &
+#(sleep 10; dropbox start) &
 
 # Disable bell
 xset -b
@@ -45,5 +50,6 @@ urxvtd -q -f -o
 # Make the i3 config
 
 make_i3_config > $HOME/.config/i3/config
+
 
 exec i3

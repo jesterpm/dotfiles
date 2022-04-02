@@ -14,7 +14,6 @@ TEXT
 /home ${fs_free /home} | \
 RAM ${memperc}% | \
 BATT ${battery BAT0} | \
-${execi 300 weatherbar.sh} | \
 ${loadavg 1} | \
 ♪ ${exec pactl list sinks | awk '/Volume: 0:/ {print substr($3, 1, index($3, "%") - 2)}'|head -n 1} | \
 ${time %a %d %b %Y} ${time %H:%M:%S} 

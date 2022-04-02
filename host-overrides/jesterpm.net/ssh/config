@@ -1,1 +1,3 @@
 User jesterpm
+IdentityFile ~/.ssh/id_ecdsa_sk_nano
+IdentityFile ~/.ssh/id_ecdsa_sk_yubinfc

@@ -17,6 +17,7 @@ set mark_old = no
 unset markers
 set text_flowed=yes
 set display_filter="~/bin/mutt-display-filter.sh"
+set edit_headers=yes
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
@@ -53,6 +54,14 @@ macro index \es "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt 
            <change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
            <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
                  "notmuch: reconstruct thread"
+
+# Contacts
+set query_command= "khard email --parsable '%s'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+#add email addresses to khard's address book
+macro index,pager A "<pipe-message>khard add-email<return>" "add the sender email address to khard"
+
 # Colors
 #color index brightwhite default ~N 
 #color index brightwhite default ~O
