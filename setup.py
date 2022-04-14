@@ -57,7 +57,10 @@ def makeLinks(dotfiles, prefix, nice, pretend):
                         os.unlink(realDest) # Only remove symlinks. Don't try to replace a file with a directory.
                     if not os.path.isdir(realDest): 
                         os.mkdir(realDest)
-                print "%50s => <NEW DIRECTORY>" % (realDest)
+                if os.path.lexists(realDest):
+                    print "%50s  => <NEW DIRECTORY>" % (realDest)
+                else:
+                    print "%50s *=> <NEW DIRECTORY>" % (realDest)
                 makeLinks(src, realDest + "/", nice, pretend)
             except OSError,e:
                 print "Could not mkdir %s. Will not link subitems: %s" % (realDest, str(e))
@@ -68,10 +71,13 @@ def makeLinks(dotfiles, prefix, nice, pretend):
                 if not pretend:
                     success = makeLink(src, realDest, nice)
 
-		if fileExists:
-                    print "%50s !=> %s" % (realDest, src)
+                if fileExists:
+                    if os.path.realpath(realDest) == os.path.realpath(src):
+                        print "%50s  => %s" % (realDest, src)
+                    else:
+                        print "%50s !=> %s" % (realDest, src)
                 else:
-                    print "%50s => %s" % (realDest, src)
+                    print "%50s *=> %s" % (realDest, src)
 
             except IOError,e:
                 print "Not linking %s to %s because IOError: %s" % (realDest, src, str(e))
