@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 """
 This script creates symlinks in your home directory to your dotfiles in the
@@ -31,21 +31,20 @@ def makeDots(base, home, nice = False, pretend = False):
     # Get host specific overrides
     hostname = socket.getfqdn().lower().split(".")
     for i in range(len(hostname)):
-        name = string.join(hostname[-(i+1):], ".")
+        name = '.'.join(hostname[-(i+1):])
         directory = base + "/host-overrides/" + name
         if os.path.isdir(directory):
             mergeDicts(dotfiles, getMap(directory))
 
     if pretend:
-        print "I would make these links:"
+        print("I would make these links:")
     else:
-        print "I am making these links:"
+        print("I am making these links:")
 
     makeLinks(dotfiles, home + "/.", nice, pretend)
 
 def makeLinks(dotfiles, prefix, nice, pretend):
-    keys = dotfiles.keys()
-    keys.sort()
+    keys = sorted(dotfiles.keys())
     for dst in keys:
         src = dotfiles[dst]
         realDest = prefix + dst
@@ -58,12 +57,12 @@ def makeLinks(dotfiles, prefix, nice, pretend):
                     if not os.path.isdir(realDest): 
                         os.mkdir(realDest)
                 if os.path.lexists(realDest):
-                    print "%50s  => <NEW DIRECTORY>" % (realDest)
+                    print("%50s  => <NEW DIRECTORY>" % (realDest))
                 else:
-                    print "%50s *=> <NEW DIRECTORY>" % (realDest)
+                    print("%50s *=> <NEW DIRECTORY>" % (realDest))
                 makeLinks(src, realDest + "/", nice, pretend)
-            except OSError,e:
-                print "Could not mkdir %s. Will not link subitems: %s" % (realDest, str(e))
+            except OSError as e:
+                print("Could not mkdir %s. Will not link subitems: %s" % (realDest, str(e)))
 
         else:
             try:
@@ -73,14 +72,14 @@ def makeLinks(dotfiles, prefix, nice, pretend):
 
                 if fileExists:
                     if os.path.realpath(realDest) == os.path.realpath(src):
-                        print "%50s  => %s" % (realDest, src)
+                        print("%50s  => %s" % (realDest, src))
                     else:
-                        print "%50s !=> %s" % (realDest, src)
+                        print("%50s !=> %s" % (realDest, src))
                 else:
-                    print "%50s *=> %s" % (realDest, src)
+                    print("%50s *=> %s" % (realDest, src))
 
-            except IOError,e:
-                print "Not linking %s to %s because IOError: %s" % (realDest, src, str(e))
+            except IOError as e:
+                print("Not linking %s to %s because IOError: %s" % (realDest, src, str(e)))
 
 """ Return a map of dest => source dotfiles """
 def getMap(baseDirectory, directory=""):
@@ -141,7 +140,7 @@ def main(argv=None):
         try:
             opts, args = getopt.getopt(argv[1:], 
                     "hnd:p", ["help", "nice", "home=", "pretend"])
-        except getopt.error, msg:
+        except getopt.error as msg:
              raise Usage(msg)
 
         # Settings:
@@ -151,7 +150,7 @@ def main(argv=None):
 
         for o, a in opts:
             if o in ("-h", "--help"):
-                print __doc__
+                print(__doc__)
                 return 0
 
             if o in ("-n", "--nice"):
@@ -168,9 +167,9 @@ def main(argv=None):
 
         makeDots(os.getcwd(), home, nice, pretend)
 
-    except Usage, err:
-        print >>sys.stderr, err.msg
-        print >>sys.stderr, "for help use --help"
+    except Usage as err:
+        eprint(err.msg, file=sys.stderr)
+        eprint("for help use --help", file=sys.stderr)
         return 2
 
 if __name__ == "__main__":
