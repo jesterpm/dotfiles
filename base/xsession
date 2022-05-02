@@ -34,6 +34,7 @@ xrdb -merge $HOME/.Xresources
 #(sleep 5; nitrogen --restore) &
 #gtk-theme-switch2 -i Ambiance
 (sleep 10; redshift-gtk) &
+(sleep 10; blueman-applet) &
 #(sleep 10; dropbox start) &
 
 # Disable bell
