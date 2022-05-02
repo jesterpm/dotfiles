@@ -9,4 +9,4 @@ set trash="=trash"
 set postponed="=drafts"
 set record="=sent"
 
-mailboxes =archive =spam =trash =sent
+mailboxes = =archive =spam =trash =sent
