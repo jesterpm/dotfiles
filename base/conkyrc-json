@@ -16,8 +16,8 @@ TEXT
 { "full_text": "${addr wlp58s0}",
   "color": ${if_up (wlp58s0)}"\#ff0000"${else}"\#00ff00"${endif} },
 
-{ "full_text": "✉ ${new_mails $HOME/.maildir/INBOX/}/${mails $HOME/.maildir/INBOX}",
-  "color": ${if_match ${new_mails $HOME/.maildir/INBOX/}>0}"\#00ff00"${else}"\#ffffff"${endif} },
+{ "full_text": "✉ ${new_mails $HOME/.maildir/}/${mails $HOME/.maildir/}",
+  "color": ${if_match ${new_mails $HOME/.maildir/}>0}"\#00ff00"${else}"\#ffffff"${endif} },
  
 { "full_text":"/home ${fs_free /home}",
   "color": ${if_match ${fs_free_perc /home}<5}"\#ff0000"${else}"\#ffffff"${endif} },
