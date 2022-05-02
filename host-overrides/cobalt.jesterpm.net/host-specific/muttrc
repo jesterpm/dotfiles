@@ -1,0 +1,11 @@
+# Mutt settings specific to my computers.
+
+set from="Jesse Morgan <jesse@jesterpm.net>"
+set use_from=yes
+set envelope_from=yes
+
+set trash="=trash"
+set postponed="=drafts"
+set record="=sent"
+
+mailboxes =archive =spam =trash =sent
