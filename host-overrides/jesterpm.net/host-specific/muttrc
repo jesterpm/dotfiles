@@ -5,7 +5,8 @@ set sendmail="msmtp"
 set use_from=yes
 set envelope_from=yes
 
-set postponed="+drafts"
-set record="+sent"
+set trash="=trash"
+set postponed="=drafts"
+set record="=sent"
 
-mailboxes =INBOX =archive =spam =trash =sent
+mailboxes =archive =spam =trash =sent

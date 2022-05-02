@@ -7,7 +7,7 @@ set mbox_type="Maildir"
 set folder="~/.maildir"
 
 # Mutt settings
-set header_cache=~/.maildir/mutt_cache/
+set header_cache=~/.mutt/mutt_cache/
 set delete=yes
 unset confirmappend
 set sort=threads
@@ -39,12 +39,10 @@ bind  index,pager R  group-reply
 macro index,pager c  "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index       C  "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index       M  "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index,pager e "<save-message>+archive<enter>" "Archive a message."
 # For gmail, don't move the message to archive, just remove it from the inbox.
-#macro index e "<save-message>+archive<enter>" "Archive a message."
-#macro pager e "<save-message>+archive<enter>" "Archive a message."
-macro index,pager e "<delete-message>" "Archive a message."
+# macro index,pager e "<delete-message>" "Archive a message."
 macro index,pager S "<save-message>+spam<enter>" "Report message as spam."
-macro index,pager d "<save-message>+trash<enter>" "Move to trash"
 macro pager \Cu "|urlview<enter>" "view links in urlview"
 
 macro index \es "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results/<enter>" "Search All Mail"
@@ -82,3 +80,4 @@ macro index,pager A "<pipe-message>khard add-email<return>" "add the sender emai
 source ~/.host-specific/muttrc
 
 source ~/.mutt/aliases
+source ~/.mutt/group-aliases

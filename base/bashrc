@@ -106,7 +106,7 @@ fi
 
 # Personal Settings
 export EDITOR=vim
-export MAILDIR=$HOME/.maildir/INBOX
+export MAILDIR=$HOME/.maildir/
 
 #export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

@@ -1,58 +1,23 @@
-IMAPAccount gmail
-Host imap.gmail.com
-User jesterpm@gmail.com
-PassCmd "imap-pass -g jesterpm@gmail.com"
-SSLType IMAPS
-CertificateFile ~/.cert/imap.gmail.com.pem
-
-IMAPStore gmail-remote
-Account gmail
-
-MaildirStore gmail-local
+MaildirStore local
 Path ~/.maildir/
-Inbox ~/.maildir/INBOX
+Inbox ~/.maildir/
+SubFolders Verbatim
 
-Channel sync-gmail-default
-Master :gmail-remote:
-Slave :gmail-local:
-Patterns "INBOX"
+IMAPAccount cobalt
+Host cobalt.jesterpm.net
+User jesterpm
+PassCmd "imap-pass -g jesterpm@cobalt.jesterpm.net"
+SSLType IMAPS
+
+IMAPStore cobalt
+Account cobalt
+
+
+Channel sync-cobalt-local
+Master :cobalt:
+Slave :local:
+Pattern *
+Create Both
+Remove Both
 Expunge Both
-Create Slave
 
-Channel sync-gmail-sent
-Master :gmail-remote:"[Gmail]/Sent Mail"
-Slave :gmail-local:sent
-Expunge Both
-Create Slave
-
-Channel sync-gmail-trash
-Master :gmail-remote:"[Gmail]/Bin"
-Slave :gmail-local:trash
-Expunge Both
-Create Slave
-
-Channel sync-gmail-drafts
-Master :gmail-remote:"[Gmail]/Drafts"
-Slave :gmail-local:drafts
-Expunge Both
-Create Slave
-
-Channel sync-gmail-archive
-Master :gmail-remote:"[Gmail]/All Mail"
-Slave :gmail-local:archive
-Expunge Both
-Create Slave
-
-Channel sync-gmail-spam
-Master :gmail-remote:"[Gmail]/Spam"
-Slave :gmail-local:spam
-Expunge Both
-Create Slave
-
-Group gmail
-Channel sync-gmail-default
-Channel sync-gmail-sent
-Channel sync-gmail-trash
-Channel sync-gmail-drafts
-Channel sync-gmail-archive
-Channel sync-gmail-spam
