@@ -169,6 +169,8 @@ bindsym $mod+g     exec sshclip
 bindsym $mod+c     exec clipmv
 
 ### Music
+bindsym $mod+F7 exec bluetoothctl connect 24:2C:00:1A:C8:BE
+bindsym $mod+Shift+F7 exec bluetoothctl disconnect 24:2C:00:1A:C8:BE
 bindsym XF86AudioPlay exec xmms2 toggle
 bindsym $mod+End exec xmms2 toggle
 bindsym XF86AudioNext exec xmms2 next

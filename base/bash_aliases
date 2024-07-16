@@ -1,2 +1,4 @@
 alias g="gvim --remote-silent"
-alias vi=vim
+alias vi=nvim
+alias vvim=/usr/bin/vim
+alias vim=nvim

@@ -12,3 +12,5 @@
 	gpgsign = false
 [init]
 	defaultBranch = master
+[sendemail]
+    smtpserver = /usr/bin/msmtp

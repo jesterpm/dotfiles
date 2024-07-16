@@ -3,7 +3,7 @@
 #
 
 # Mailbox Settings
-set mbox_type="Maildir"
+set mbox_type="mbox"
 set folder="~/.maildir"
 
 # Mutt settings

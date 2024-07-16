@@ -130,3 +130,4 @@ if [ -f ~/.host-specific/bash_aliases ]; then
     source ~/.host-specific/bash_aliases
 fi
 
+export PATH="/home/jesterpm/.local/bin:$PATH"

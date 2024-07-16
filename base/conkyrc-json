@@ -29,7 +29,7 @@ TEXT
 
 { "full_text":"${loadavg 1}" },
 
-{ "full_text":"♪ ${exec amixer get Master | awk '/Mono/ {print substr($4, 2, index($4, "%") - 1)}'|tail -n 1}" },
+{ "full_text":"♪ ${exec amixer get Master | awk '/Left/ {print substr($5, 2, index($5, "%") - 1)}'|tail -n 1}" },
 
 { "full_text":"${time %a %d %b %Y} ${time %H:%M:%S} ${utime %H:%M}Z",
   "short_text":"${time %H:%M:%S}" }

@@ -17,8 +17,8 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 
 " Other usefull completion sources
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-buffer'
 
 " See hrsh7th's other plugins for more completion sources!
 
@@ -40,6 +40,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
+let g:ledger_is_hledger=v:false
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 

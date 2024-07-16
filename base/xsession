@@ -3,6 +3,7 @@ export TERMINAL=urxvtc
 export EDITOR=vim
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
+export MOZ_USE_XINPUT2=1
 
 systemctl --user import-environment DISPLAY PATH
 
@@ -19,6 +20,7 @@ fi
 xsetroot -solid "#111"
 ulimit -c unlimited
 setxkbmap -option compose:menu
+#xmodmap ~/.Xmodmap
 
 # Startup applications
 xrandr --dpi 96
@@ -33,7 +35,6 @@ xrdb -merge $HOME/.Xresources
 (sleep 5; system-config-printer-applet) &
 #(sleep 5; nitrogen --restore) &
 #gtk-theme-switch2 -i Ambiance
-(sleep 10; redshift-gtk) &
 (sleep 10; blueman-applet) &
 #(sleep 10; dropbox start) &
 

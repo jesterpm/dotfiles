@@ -1,7 +1,7 @@
-text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" %s
-application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" %s
+text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
+application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
 
-text/html; w3m -I %{charset} -T text/html -dump; copiousoutput; description=HTML; compose=vim %s
+text/html; w3m -I %{charset} -o display_link_number=1 -T text/html -dump; copiousoutput; description=HTML; compose=vim %s
 
 application/pdf; evince %s; test=test -n "$DISPLAY"
 application/x-bzpdf; evince %s; test=test -n "$DISPLAY"
