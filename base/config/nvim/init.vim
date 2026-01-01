@@ -4,49 +4,22 @@ source ~/.vimrc
 
 call plug#begin('~/.vim/plugged')
 
-" Collection of common configurations for the Nvim LSP client
+" Rust setup
+" Use tag v2.3.0 with nvim <= 0.10
 Plug 'neovim/nvim-lspconfig'
-
-" Completion framework
-Plug 'hrsh7th/nvim-cmp'
-
-" LSP completion source for nvim-cmp
-Plug 'hrsh7th/cmp-nvim-lsp'
-
-" Snippet completion source for nvim-cmp
-Plug 'hrsh7th/cmp-vsnip'
-
-" Other usefull completion sources
-" Plug 'hrsh7th/cmp-path'
-" Plug 'hrsh7th/cmp-buffer'
-
-" See hrsh7th's other plugins for more completion sources!
-
-" To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
-
-" Snippet engine
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/vim-vsnip'
 
-" Fuzzy finder
-" Optional
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
-" Color Scheme
-Plug 'arcticicestudio/nord-vim'
-
-Plug 'vim-airline/vim-airline'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-
+" Ledger
 let g:ledger_is_hledger=v:false
 Plug 'ledger/vim-ledger'
 
 call plug#end()
 
-colorscheme nord
-
+" Rust configuration
 source ~/.config/nvim/rust.vim
-
