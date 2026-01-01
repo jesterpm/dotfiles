@@ -9,7 +9,9 @@ export MAILHOST="jesterpm.net"
 export MAIL=$HOME/.maildir/
 export MAILDIR=$MAIL
 
-export DEBMAIL="jesse@jesterpm.net"
+export EMAIL="jesse@jesterpm.net"
+export DEBMAIL="$EMAIL"
+export DEBEMAIL="$EMAIL"
 export DEBFULLNAME="Jesse Morgan"
 
 export AWS_ACCOUNT_ID=206578203396

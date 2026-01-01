@@ -13,6 +13,8 @@ net_avg_samples 2
 TEXT
 [
 
+{ "full_text": "${cat /home/jesterpm/tmp/metar.txt}" }, 
+
 { "full_text": "${addr wlp58s0}",
   "color": ${if_up (wlp58s0)}"\#ff0000"${else}"\#00ff00"${endif} },
 

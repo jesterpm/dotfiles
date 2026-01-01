@@ -155,7 +155,7 @@ mode $displayMode {
 ## i3bar Settings
 bar {
     status_command conky-i3bar
-    position bottom
+    position top
     tray_output primary
     font xft:Inconsolata 9
 }
