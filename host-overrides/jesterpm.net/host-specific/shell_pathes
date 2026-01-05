@@ -1,2 +1,2 @@
 # PATH changes
-export PATH="$HOME/.cargo/bin:$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PATH:$HOME/.linuxbrew/bin"
