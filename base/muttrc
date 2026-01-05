@@ -61,20 +61,20 @@ bind editor ^T    complete
 macro index,pager A "<pipe-message>khard add-email<return>" "add the sender email address to khard"
 
 # Colors
-#color index brightwhite default ~N 
-#color index brightwhite default ~O
-#
+color index brightwhite default ~N 
+color index brightwhite default ~O
+
 ## colors
-#color normal	white black
-#color attachment brightyellow black
-#color hdrdefault white black
-#color indicator black white
-#color markers	brightred black
-#color quoted	green black
-#color signature cyan black
-#color status	black white
-#color tilde	blue black
-#color tree	red black
+color normal	white default
+color attachment brightyellow default
+color hdrdefault white default
+color indicator black white
+color markers	brightred default
+color quoted	green default
+color signature cyan default
+color status	black white
+color tilde	blue default
+color tree	red default
 
 # Grab any host-specific settings
 source ~/.host-specific/muttrc
