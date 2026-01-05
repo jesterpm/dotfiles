@@ -1,2 +1,2 @@
 # PATH changes
-export PATH="$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.linuxbrew/bin"
