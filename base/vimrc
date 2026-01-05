@@ -85,11 +85,6 @@ set softtabstop=4
 set tabstop=4
 set smarttab
 
-" Paste from GUI into vim and not lose indendation
-" F7 to toggle paste mode
-map <F7> :set invpaste<CR>
-set pastetoggle=<F7>
-
 "normal mode maps
 
 " Switch to/from header file
