@@ -14,6 +14,10 @@ set sort=threads
 set sort_aux = last-date-received
 set pager_stop=yes
 set mark_old = no
+set fast_reply = yes
+set include = yes
+set date_format = "!%a, %b %d, %Y at %H:%M %Z"
+set attribution = "On %D, %n wrote:"
 unset markers
 set text_flowed=yes
 set display_filter="~/bin/mutt-display-filter.sh"
@@ -23,7 +27,7 @@ alternative_order text/plain text/enriched text/html
 
 # Headers
 ignore *
-unignore date from: to: cc subject X-Spam-Status
+unignore date from: to: cc subject X-Spam-Score-Int
 set forward_format="Fwd: %s"
 
 # Macros
