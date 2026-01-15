@@ -43,11 +43,14 @@ bind  index,pager R  group-reply
 macro index,pager c  "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro index       C  "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index       M  "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-macro index,pager e "<save-message>+archive<enter>" "Archive a message."
+macro index,pager e "<save-message>=archive<enter>" "Archive a message."
 # For gmail, don't move the message to archive, just remove it from the inbox.
 # macro index,pager e "<delete-message>" "Archive a message."
-macro index,pager S "<save-message>+spam<enter>" "Report message as spam."
+macro index,pager S "<save-message>=spam<enter>" "Report message as spam."
 macro pager \Cu "|urlview<enter>" "view links in urlview"
+
+macro index ,, "<change-folder>=<enter>" "Switch to inbox folder"
+macro index ,e "<change-folder>=archive<enter>" "Switch to archive folder"
 
 macro index \es "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results/<enter>" "Search All Mail"
  macro index <F9> \
