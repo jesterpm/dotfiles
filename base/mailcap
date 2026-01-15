@@ -1,6 +1,9 @@
-text/calendar; mutt-ical.py -i -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
-application/ics; mutt-ical.py -i -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
+text/calendar; mutt-ical.py -i -e "$EMAIL" -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
+text/calendar; mutt-ical.py -D %s; copiousoutput
+application/ics; mutt-ical.py -i -e "$EMAIL" -e "jesse@jesterpm.net" -e "jesterpm@gmail.com" %s
+application/ics; mutt-ical.py -D %s; copiousoutput
 
+text/html; open %s && sleep 2; description=View in browser
 text/html; w3m -I %{charset} -o display_link_number=1 -T text/html -dump; copiousoutput; description=HTML; compose=vim %s
 
 application/pdf; evince %s; test=test -n "$DISPLAY"
@@ -8,3 +11,10 @@ application/x-bzpdf; evince %s; test=test -n "$DISPLAY"
 application/x-ext-pdf; evince %s; test=test -n "$DISPLAY"
 application/x-gzpdf; evince %s; test=test -n "$DISPLAY"
 application/x-xzpdf; evince %s; test=test -n "$DISPLAY"
+
+image/JPEG; view_attachment %s jpg
+image/PNG; view_attachment %s png
+image/GIF; view_attachment %s gif
+application/pdf; view_attachment %s pdf
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; view_attachment %s xlsx
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; view_attachment %s docx

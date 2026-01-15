@@ -22,8 +22,8 @@ unset markers
 set text_flowed=yes
 set display_filter="~/bin/mutt-display-filter.sh"
 set edit_headers=yes
-auto_view text/html
-alternative_order text/plain text/enriched text/html
+auto_view text/html text/calendar
+alternative_order text/plain text/html text/enriched text/calendar
 
 # Headers
 ignore *
@@ -65,7 +65,7 @@ bind editor ^T    complete
 macro index,pager A "<pipe-message>khard add-email<return>" "add the sender email address to khard"
 
 # Colors
-color index brightwhite default ~N 
+color index brightwhite default ~N
 color index brightwhite default ~O
 
 ## colors
@@ -79,6 +79,20 @@ color signature cyan default
 color status	black white
 color tilde	blue default
 color tree	red default
+
+### Patch colors
+### Thanks to https://www.do-not-panic.com/2014/07/colored-diffs-with-mutt.html
+color   normal  white           default
+color   body    brightwhite     default         ^[[:space:]].*
+color   body    brightwhite     default         ^(diff).*
+color   body    white           default         ^[\-\-\-].*
+color   body    white           default         ^[\+\+\+].*
+color   body    green           default         ^[\+].*
+color   body    red             default         ^[\-].*
+color   body    brightblue      default         ^[@@].*
+#color   body    brightwhite     default         ^(\s).*
+color   body    brightwhite     default         ^(Signed-off-by).*
+color   body    brightwhite     default         ^(Cc)
 
 # Grab any host-specific settings
 source ~/.host-specific/muttrc
