@@ -1,7 +1,6 @@
 # Mutt settings specific to my computers.
 
 set from="Jesse Morgan <jesse@jesterpm.net>"
-set sendmail="msmtp"
 set use_from=yes
 set envelope_from=yes
 
