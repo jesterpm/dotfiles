@@ -2,3 +2,7 @@ User jesterpm
 IdentityFile ~/.ssh/jesterpm-sso
 IdentityFile ~/.ssh/id_ecdsa_sk_nano
 IdentityFile ~/.ssh/id_ecdsa_sk_yubinfc
+
+Host cobalt cobalt.jesterpm.net
+    HostName cobalt.jesterpm.net
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
