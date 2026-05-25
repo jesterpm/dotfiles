@@ -109,12 +109,12 @@ export EDITOR=vim
 export MAILDIR=$HOME/.maildir/
 
 #export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 #source /usr/local/etc/bash_completion.d/*
 
-if [ -f ~/.shell_pathes ]; then
-    source ~/.shell_pathes
+if [ -f ~/.shell_paths ]; then
+    source ~/.shell_paths
 fi
 
 # Host Specific Settings
@@ -122,8 +122,8 @@ if [ -f ~/.host-specific/bashrc ]; then
     source ~/.host-specific/bashrc
 fi
 
-if [ -f ~/.host-specific/shell_pathes ]; then
-    source ~/.host-specific/shell_pathes
+if [ -f ~/.host-specific/shell_paths ]; then
+    source ~/.host-specific/shell_paths
 fi
 
 if [ -f ~/.host-specific/bash_aliases ]; then
