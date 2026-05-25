@@ -15,3 +15,5 @@ export DEBEMAIL="$EMAIL"
 export DEBFULLNAME="Jesse Morgan"
 
 export AWS_ACCOUNT_ID=206578203396
+
+export NNTPSERVER=news.eternal-september.org
